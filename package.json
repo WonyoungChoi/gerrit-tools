@@ -1,0 +1,19 @@
+{
+  "name": "gerrit-tools",
+  "version": "0.0.1",
+  "description": "Tools for using the gerrit more easily",
+  "keywords": ["gerrit", "git"],
+  "license": "MIT",
+  "author": {
+    "name": "Wonyoung Choi",
+    "email": "zzervb@gmail.com"
+  },
+  "bin": {
+    "gerrit": "./bin/gerrit-tools.js"
+  },
+  "main": "src/main.js",
+  "dependencies": {
+    "ini": ">= 1.3.4",
+    "minimist": ">= 1.2.0"
+  }
+}
