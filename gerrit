@@ -72,8 +72,8 @@ def cmd_source(args):
 		subprocess.call(['scp', '-p', '-P', config['gerrit_port'], url, created_dir + '/.git/hooks/'])
 
 if __name__ == "__main__":
-	parser = argparse.ArgumentParser(prog='tizen', description=__doc__)
-	parser.add_argument('-P', '--profile', help='set a profile in config.ini.')
+	parser = argparse.ArgumentParser(description=__doc__)
+	parser.add_argument('-p', '-P', '--profile', default='default', help='set a profile in config.ini.')
 
 	subparsers = parser.add_subparsers()
 
