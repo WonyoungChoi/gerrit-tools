@@ -66,6 +66,12 @@ def cmd_source(args):
 
 	ret = subprocess.call(['git', 'clone', url, created_dir])
 
+	if ret == 0 and config['gerrit_working_branch'] is not None:
+		curr_path = os.getcwd()
+		os.chdir(created_dir)
+		ret = subprocess.call(['git', 'checkout', '-t', config['gerrit_working_branch']])
+		os.chdir(curr_path)
+
 	if ret == 0:
 		url = config['gerrit_user'] + '@' + config['gerrit_host'] + ':hooks/commit-msg'
 		subprocess.call(['scp', '-p', '-P', config['gerrit_port'], url, created_dir + '/.git/hooks/'])
