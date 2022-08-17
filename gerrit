@@ -1,11 +1,11 @@
-#!/usr/bin/python
+#!/usr/bin/python3
 
 """Gerrit Tools - commandline tool for searching, checking out gerrit repositories."""
 
 import sys
 import os
 import argparse
-import ConfigParser
+import configparser
 import subprocess
 
 _CONFIG = None
@@ -26,10 +26,10 @@ def get_config(profile):
 				configPath = p + os.sep + _CONFIG_FILE
 				break
 		if configPath is None:
-			print "Can't find %s in %s" % (_CONFIG_FILE, _CONFIG_PATH)
+			print("Can't find %s in %s" % (_CONFIG_FILE, _CONFIG_PATH))
 
 		# Open Config File
-		_CONFIG = ConfigParser.ConfigParser()
+		_CONFIG = configparser.ConfigParser()
 		_CONFIG.read(configPath)
 
 	if profile is None:
@@ -48,10 +48,10 @@ def cmd_list(args):
 							stdout=subprocess.PIPE)
 	for line in p.stdout.readlines():
 		if hasattr(args, 'keyword'):
-			if line.find(args.keyword) > -1:
-				print line.strip()
+			if line.find(args.keyword.encode()) > -1:
+				print(line.decode().strip())
 		else:
-			print line.strip()
+			print(line.strip())
 
 
 def cmd_source(args):
